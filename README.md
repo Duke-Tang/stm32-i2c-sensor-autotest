@@ -91,10 +91,14 @@ pytest tests/ -v
 python3 tools/run_characterization.py --trials 1000
 
 # Generate a sample log, then parse it
-python3 -c "from device.i2c_sensor_sim import I2CSensorSim; \
-            from device.i2c_driver import I2CDriver; \
-            d = I2CDriver(I2CSensorSim(fault_rate=0.2)); \
-            [d.read_temperature() for _ in range(50)]"
+# Run the full test suite
+pytest tests/ -v
+
+# Run characterization across 7 fault rates × 1000 trials
+python3 tools/run_characterization.py --trials 1000
+
+# Parse generated log into JSON metrics
+python3 tools/log_parser.py sensor_run.log --json log_report.json
 python3 tools/log_parser.py sensor_run.log --json log_report.json
 ```
 
