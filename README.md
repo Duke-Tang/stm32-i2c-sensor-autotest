@@ -29,6 +29,7 @@ mirrors that real-world workflow:
   human-readable tables and machine-readable JSON for downstream analysis.
 
 ---
+
 ## Engineering Highlights
 
 - **Deterministic stress testing**: Seeded RNG ensures 30% NACK injection produces identical pass/fail patterns across CI runs — no flaky tests.
@@ -36,6 +37,9 @@ mirrors that real-world workflow:
 - **Exponential backoff retry**: Driver layer recovers ≥95% of calls under 30% NACK; cleanly fails after `max_retries` under 100% NACK (no infinite loops).
 - **CI matrix across Python 3.10 / 3.11 / 3.12**: GitHub Actions runs the full suite + a 100-trial characterization smoke test on every push.
 - **Log parsing pipeline**: Regex-based UART log parser converts unstructured firmware logs into structured JSON metrics — same pattern used in production HIL autotest.
+
+---
+  
 ## Architecture
 
 ```mermaid
