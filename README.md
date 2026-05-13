@@ -43,21 +43,23 @@ mirrors that real-world workflow:
 ## Architecture
 
 ```mermaid
-flowchart TD
-    A["Application Code<br/>read_temperature(), read_device_id()"] --> B
-    B["I2CDriver<br/>device/i2c_driver.py<br/><i>retry, backoff, statistics</i>"] --> C
-    C["I2CSensorSim<br/>device/i2c_sensor_sim.py<br/><i>register map, fault injection</i>"]
+flowchart LR
+    A["<b>Application</b><br/>read_temperature()<br/>read_device_id()"]
+    B["<b>I2CDriver</b><br/>retry + backoff<br/>statistics"]
+    C["<b>I2CSensorSim</b><br/>register map<br/>fault injection"]
     
-    style A fill:#e1f5ff,stroke:#0277bd,color:#000
-    style B fill:#fff4e1,stroke:#ef6c00,color:#000
-    style C fill:#f0e1ff,stroke:#6a1b9a,color:#000
+    A --> B --> C
+    
+    style A fill:#e1f5ff,stroke:#0277bd,stroke-width:2px,color:#000
+    style B fill:#fff4e1,stroke:#ef6c00,stroke-width:2px,color:#000
+    style C fill:#f0e1ff,stroke:#6a1b9a,stroke-width:2px,color:#000
 ```
 
 | Layer | File | Responsibility |
 |---|---|---|
-| Application | (callers) | Calls high-level driver API |
+| Application | (callers) | High-level driver API |
 | Driver | `device/i2c_driver.py` | Retry, backoff, error stats |
-| Hardware Sim | `device/i2c_sensor_sim.py` | Register map, fault injection, logging |
+| Hardware Sim | `device/i2c_sensor_sim.py` | Register map, fault injection |
 ---
 
 ## Project structure
