@@ -61,6 +61,7 @@ flowchart TD
 ---
 
 ## Project structure
+```
 firmware-autotest/
 ├── device/                       # firmware-side simulation + driver
 │   ├── i2c_sensor_sim.py         # TMP102-style I2C sensor simulator
@@ -74,14 +75,14 @@ firmware-autotest/
 ├── .github/workflows/ci.yml      # GitHub Actions CI (pytest matrix)
 ├── requirements.txt
 └── README.md
-
+```
 ---
 
 ## Quick start
 
 ```bash
-git clone <this-repo>
-cd firmware-autotest
+git clone https://github.com/Duke-Tang/stm32-i2c-sensor-autotest.git
+cd stm32-i2c-sensor-autotest
 pip install -r requirements.txt
 
 # Run the full test suite
@@ -89,17 +90,6 @@ pytest tests/ -v
 
 # Run characterization across 7 fault rates × 1000 trials
 python3 tools/run_characterization.py --trials 1000
-
-# Generate a sample log, then parse it
-# Run the full test suite
-pytest tests/ -v
-
-# Run characterization across 7 fault rates × 1000 trials
-python3 tools/run_characterization.py --trials 1000
-
-# Parse generated log into JSON metrics
-python3 tools/log_parser.py sensor_run.log --json log_report.json
-python3 tools/log_parser.py sensor_run.log --json log_report.json
 ```
 
 ---
