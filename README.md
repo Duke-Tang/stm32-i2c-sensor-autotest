@@ -50,9 +50,9 @@ flowchart LR
     
     A --> B --> C
     
-    style A fill:#e1f5ff,stroke:#0277bd,stroke-width:2px,color:#000
-    style B fill:#fff4e1,stroke:#ef6c00,stroke-width:2px,color:#000
-    style C fill:#f0e1ff,stroke:#6a1b9a,stroke-width:2px,color:#000
+    style A fill:#1565c0,stroke:#0d47a1,stroke-width:2px,color:#fff
+    style B fill:#e65100,stroke:#bf360c,stroke-width:2px,color:#fff
+    style C fill:#6a1b9a,stroke:#4a148c,stroke-width:2px,color:#fff
 ```
 
 | Layer | File | Responsibility |
