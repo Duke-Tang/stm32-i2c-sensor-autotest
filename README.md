@@ -1,5 +1,8 @@
 # STM32 I2C Sensor Firmware Autotest Framework
-
+![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)
+![Tests](https://img.shields.io/badge/tests-10%20passed-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey)
 A Python-based test automation framework that emulates an STM32 I2C temperature
 sensor at the register level, with a driver layer featuring retry logic, fault
 injection stress tests, and characterization reporting.
