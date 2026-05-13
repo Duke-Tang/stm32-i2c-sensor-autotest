@@ -31,25 +31,23 @@ mirrors that real-world workflow:
 ---
 
 ## Architecture
-┌────────────────────┐
-│  Application code  │   read_temperature(), read_device_id()
-└─────────┬──────────┘
-│
-┌─────────▼──────────┐   retry, backoff, statistics
-│   I2CDriver        │   (device/i2c_driver.py)
-└─────────┬──────────┘
-│
-┌─────────▼──────────┐   register-level emulation
-│   I2CSensorSim     │   fault injection (NACK rate)
-│                    │   (device/i2c_sensor_sim.py)
-└────────────────────┘
 
-| Layer        | File                            | Responsibility                          |
-|--------------|---------------------------------|-----------------------------------------|
-| Application  | (callers)                       | Calls high-level driver API             |
-| Driver       | `device/i2c_driver.py`          | Retry, backoff, error stats             |
-| Hardware sim | `device/i2c_sensor_sim.py`      | Register map, fault injection, logging  |
+```mermaid
+flowchart TD
+    A["Application Code<br/>read_temperature(), read_device_id()"] --> B
+    B["I2CDriver<br/>device/i2c_driver.py<br/><i>retry, backoff, statistics</i>"] --> C
+    C["I2CSensorSim<br/>device/i2c_sensor_sim.py<br/><i>register map, fault injection</i>"]
+    
+    style A fill:#e1f5ff,stroke:#0277bd,color:#000
+    style B fill:#fff4e1,stroke:#ef6c00,color:#000
+    style C fill:#f0e1ff,stroke:#6a1b9a,color:#000
+```
 
+| Layer | File | Responsibility |
+|---|---|---|
+| Application | (callers) | Calls high-level driver API |
+| Driver | `device/i2c_driver.py` | Retry, backoff, error stats |
+| Hardware Sim | `device/i2c_sensor_sim.py` | Register map, fault injection, logging |
 ---
 
 ## Project structure
