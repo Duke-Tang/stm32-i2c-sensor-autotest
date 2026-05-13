@@ -120,23 +120,20 @@ All tests run in under one second on a clean machine.
 
 ## Characterization results
 
-`tools/run_characterization.py` sweeps the fault-rate spectrum and produces a
-table like:
-Fault Rate | Trials | Success % |  Fails | Avg Retry |  Avg ms |  p99 ms
-    0.00 |   1000 |   100.00% |      0 |     0.000 |   0.05  |    0.18
-    0.10 |   1000 |   100.00% |      0 |     0.101 |   0.34  |    3.68
-    0.30 |   1000 |    99.20% |      8 |     0.430 |   0.78  |    4.50
-    0.50 |   1000 |    93.50% |     65 |     1.005 |   1.62  |    8.10
-    0.70 |   1000 |    75.40% |    246 |     2.350 |   3.50  |   16.20
+`tools/run_characterization.py` sweeps the fault-rate spectrum and produces a table like:
 
-**Interpretation:** With 3 retries, the driver fully recovers up to ~30% NACK
-rate. Beyond ~50%, retry alone is not enough — a real system would need
-hardware-level mitigation (longer bus pull-ups, lower clock, or peripheral
-reset).
+```
+Fault Rate | Trials | Success %  | Fails | Avg Retry | Avg ms | p99 ms
+0.00       | 1000   | 100.00%    | 0     | 0.000     | 0.05   | 0.18
+0.10       | 1000   | 100.00%    | 0     | 0.101     | 0.34   | 3.68
+0.30       | 1000   | 99.20%     | 8     | 0.430     | 0.78   | 4.50
+0.50       | 1000   | 93.50%     | 65    | 1.005     | 1.62   | 8.10
+0.70       | 1000   | 75.40%     | 246   | 2.350     | 3.50   | 16.20
+```
 
-JSON output is also produced for ingestion by downstream dashboards or CI
-trend tracking.
+**Interpretation**: With 3 retries, the driver fully recovers up to ~30% NACK rate. Beyond ~50%, retry alone is not enough — a real system would need hardware-level mitigation (longer bus pull-ups, lower clock, or peripheral reset).
 
+JSON output is also produced for ingestion by downstream dashboards or CI trend tracking.
 ---
 
 ## CI
